@@ -6,7 +6,7 @@ We recommend budgeting two hours for a full walkthrough of this tutorial. The co
 
 ## How to Get Started
 
-1. [Install prerequisities and set up Azure resources](./setup.md)
+1. [Install prerequisites and set up Azure resources](./setup.md)
 
     After you complete this section, you'll have created a Batch AI GPU cluster loaded with the sample data and scripts required by this tutorial.
 1. [Train a land classification model from scratch](./train.md)
