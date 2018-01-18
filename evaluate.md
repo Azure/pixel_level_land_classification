@@ -1,6 +1,6 @@
 # Apply the trained model to new data
 
-We will apply the trained model to an approximately 1 km x 1 km region centered at a point in Charlotte County, VA. This region is close to (but does not overlap with) the regions used to train the model, so we expect reasonable performance despite the short training time.
+We will apply the trained model to an approximately 1 km x 1 km region centered at a point in Charlotte County, VA. This region is close to (but does not overlap with) the regions used to train the model; since the land type is very similar, we expect reasonable performance despite the short training time and limited training dataset.
 
 ## Submit the evaluation job
 
@@ -13,9 +13,15 @@ This job will take ~5 minutes to run; while waiting, you can read the section be
 az batchai job show -n evaluationjob
 ```
 
+When the job status changes to "Finished", the evaluation job is complete.
+
 ## Understand the output of the evaluation job
 
-### Description of what the evaluation job is doing
+### Description of the evaluation process
+
+The [evaluation script](https://aiforearthcollateral.blob.core.windows.net/imagesegmentationtutorial/scripts/evaluate.py) extracts a 1 km x 1 km region of interest whose center is specified by lat-lon coordinates. (These coordinates, and other command-line arguments used by the script, are specified in the `evaluation_job.json` job config file.) 
+
+If you like, you can modify `evaluation_job.json` to use a sample model that we prepared by training on a larger dataset for 250 epochs. Simply replace `trained.model` with `250_epochs.model`, save the config file, and submit the job again with a unique job name. (Your previous output images will be overwritten unless you also change the name of your output folder.)
 
 ### Accessing your evaluation job's output
 
