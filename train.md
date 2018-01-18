@@ -21,7 +21,7 @@ az batchai job show -n trainingjob
 The `training_job.json` file specifies where the training script is located and what arguments it will take, as well as how the distributed training job should be launched. Since we've specified that this is a CNTK training job, Batch AI will launch the job using `mpiexec` to coordinate distributed training between the specified number of workers/processes. (Batch AI also streamlines distributed training for [other supported deep learning frameworks](https://github.com/Azure/BatchAI/tree/master/recipes).) Notice that filepaths in `job.json` are defined relative to `$AZ_LEARNING_MOUNT_ROOT`, the location on each of your cluster's VMs where the file share (`$AZ_LEARNING_MOUNT_ROOT/afs`) and blob storage container (`$AZ_LEARNING_MOUNT_ROOT/blobfuse`) have been mounted.
 
 
-By default, the model will be trained for just one epoch (see the `num_epochs` parameter in `training_job.json`) and the eight provided training images pairs. This choice minimizes the runtime of the tutorial but will not result in a very performant model. We trained our models for 250 epochs using 1,111 training image pairs.
+By default, the model will be trained for just one epoch (see the `num_epochs` parameter in `training_job.json`) and the eight provided training images pairs. This choice minimizes the runtime of the tutorial but will not result in a very performant model. For comparison, our full-scale training was performed for 250 epochs using 740 training image pairs.
 
 ### Training data access
 
