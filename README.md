@@ -1,4 +1,6 @@
 
+<img src="./outputs/comparison_w700.png"/>
+
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
