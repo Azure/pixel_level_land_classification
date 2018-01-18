@@ -21,7 +21,7 @@ We recommend budgeting two hours for a full walkthrough of this tutorial. The co
     
 ## Sample Output
 
-This tutorial will train a pixel-level land use classifier for a single epoch: your model will produce results similar to bottom-right. By expanding the training dataset and increasing the number of training epochs, we were able to achieve results like the example at bottom right. 
+This tutorial will train a pixel-level land use classifier for a single epoch: your model will produce results similar to bottom-left. By expanding the training dataset and increasing the number of training epochs, we achieved results like the example at bottom right. The trained model is accurate enough to detect some features, like the small pond at top-center, that were not correctly annotated in the ground-truth labels.
 
 <img src="./outputs/comparison_fullsize.PNG"/>
 
