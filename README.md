@@ -1,10 +1,14 @@
-<img src="./outputs/comparison_fullsize.PNG"/>
+# Pixel-level land use classification
 
-## Get Started
+This repository contains a tutorial illustrating how to create a deep neural network model that accepts an aerial image as input and returns a land cover label (forested, water, etc.) for every pixel in the image. Microsoft's [Cognitive Toolkit (CNTK)](https://www.microsoft.com/cognitive-toolkit/) is used to train and evaluate the model on an [Azure Batch AI](https://docs.microsoft.com/azure/batch-ai/) GPU cluster. The method shown here was developed in collaboration between the [Chesapeake Conservancy](http://chesapeakeconservancy.org/) and [Microsoft Research](https://www.microsoft.com/research/).
+
+We recommend budgeting two hours for a full walkthrough of this tutorial. The code, shell commands, trained models, and sample images provided here may prove helpful even if you prefer not to complete the tutorial: we have provided explanations and direct links to these materials where possible.
+
+## How to Get Started
 
 1. [Install prerequisities and set up Azure resources](./setup.md)
 
-    After you complete this section, you'll have a Batch AI GPU cluster loaded with the sample data and scripts required by this tutorial.
+    After you complete this section, you'll have created a Batch AI GPU cluster loaded with the sample data and scripts required by this tutorial.
 1. [Train a land classification model from scratch](./train.md)
 
     In this section, you'll produce a trained CNTK model that you can use anywhere for pixel-level land cover prediction.
@@ -14,6 +18,17 @@
 1. [Learn more about scaling up training](./scaling.md)
 
     You'll see how we scaled this solution to train a model for 250 epochs, with 139x as much data and 74x as many GPUs, in a little over two hours!
+    
+## Sample Output
+
+This tutorial will train a pixel-level land use classifier for a single epoch: your model will produce results similar to bottom-right. By expanding the training dataset and increasing the number of training epochs, we were able to achieve results like the example at bottom right. 
+
+<img src="./outputs/comparison_fullsize.PNG"/>
+
+## Related materials
+
+- [Keynote demo from Microsoft Ignite](https://www.youtube.com/watch?time_continue=1&v=MUqo-lsAKgQ#t=23m46s)
+- Blog post (forthcoming)
 
 ## Contributing
 
