@@ -71,3 +71,5 @@ In your future work, you may find it handy to access these files without navigat
 ## Next steps
 
 Now that you have produced a trained model, you can test its performance in the following section on [applying your model to new aerial images](./evaluate.md). You may later wish to return to this section and train a model for more than one epoch, to improve its performance.
+
+If you decide to stop pursuing the tutorial after this step, we recommend deleting all Azure resources you created. Please see the instructions in the [setup section](./setup.md) of this tutorial.
