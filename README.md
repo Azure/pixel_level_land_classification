@@ -17,7 +17,7 @@ We recommend budgeting two hours for a full walkthrough of this tutorial. The co
     You'll predict land use on a 1 km x 1 km region not previously seen during training, and examine your results in full color.
 1. [Learn more about scaling up training](./scaling.md)
 
-    You'll see how we scaled this solution to train a model for 250 epochs, with 139x as much data and 74x as many GPUs, in a little over two hours!
+    You'll see how we scaled this solution to train a model for 250 epochs, on a much larger dataset, in a little over two hours!
     
 ## Sample Output
 
