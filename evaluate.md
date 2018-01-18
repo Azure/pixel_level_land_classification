@@ -19,9 +19,13 @@ When the job status changes to "Finished", the evaluation job is complete.
 
 ### Description of the evaluation process
 
-The [evaluation script](https://aiforearthcollateral.blob.core.windows.net/imagesegmentationtutorial/scripts/evaluate.py) extracts a 1 km x 1 km region of interest whose center is specified by lat-lon coordinates. (These coordinates, and other command-line arguments used by the script, are specified in the `evaluation_job.json` job config file.) 
+The [evaluation script](https://aiforearthcollateral.blob.core.windows.net/imagesegmentationtutorial/scripts/evaluate.py) extracts a 1 km x 1 km region from the evaluation data files. The center of the region is specified by lat-lon coordinates. (These coordinates, and other command-line arguments used by the script, are specified in the `evaluation_job.json` job config file.) The evaluation script loads the header information from the data files using GDAL, and interprets it to find the indices of the pixel that has the desired lat-lon coordinates. It then extracts the ground-truth labels and aerial imagery from the desired region. The extracted aerial image is "padded" by extending the boundaries of the extracted regions by 64 pixels in all directions.
 
-If you like, you can modify `evaluation_job.json` to use a sample model that we prepared by training on a larger dataset for 250 epochs. Simply replace `trained.model` with `250_epochs.model`, save the config file, and submit the job again with a unique job name. (Your previous output images will be overwritten unless you also change the name of your output folder.)
+Our trained model takes an input with dimensions 256 pixels x 256 pixels, and produces an output with dimensions 128 x 128 (corresponding to the center of the input region). To get output labels for the entire region of interest, the evaluation script must therefore use a tiling strategy, which is illustrated in the figure below. The model is first applied to the region at top-left of the extracted aerial image data. Since the aerial image data is appropriately padding, the model's output corresponds to the top-left corner of the actual region of interest. Next, we slide the model's input window 128 pixels to the right; the model's output for this tile corresponds to an adjacent location in the region of interest. Once we have covered all columns in a row, we shift the input window 128 pixels down and back to the left-hand boundary of the aerial image data. Finally, the model's predictions for all tiles are stitched together to produce a single image.
+
+<img src="./outputs/tiling_strategy.PNG">
+
+To visualize this output, we find the most likely label for each pixel and color-code the pixel accordingly. This visualization is simple to interpret but does not provide much information on the model's certainty in its predictions. If desired, you can modify the script to call `save_label_image()` using the argument `hard=False`: the color of each pixel will then be a blend of the label colors, weighted by the probability of each label.
 
 ### Accessing your evaluation job's output
 
@@ -31,7 +35,9 @@ We have applied our model to a 1 km x 1 km region centered on [a point in Charlo
 1. Use the search bar along the top of the screen to search for the storage account you created earlier. Click on the correct result to load the storage account's overview pane.
 1. In the "Services" section, you will links labeled "Blobs" and "Files" inside of square bounding boxes. Click on "Blobs".
 1. A list of blob containers will be displayed. Click on the container named "blobfuse" created by this tutorial.
-1. A navigable directory structure will be displayed. You will find the output images from the evaluation job under the `evaluation_output` folder. You can download files by clicking on the filename and then clicking "Download" in the pane that appears at right.
+1. A navigable directory structure will be displayed. You will find the output images from the evaluation job under the `evaluation_output` folder. 
+
+    You can download files by clicking on the filename and then clicking "Download" in the pane that appears at right. You can also use this interface to upload new files, e.g. if you would like to modify the code in our training and evaluation scripts.
 
 These extracted TIF images will each be ~12 MB in size and can be examined using a web browser (and most image/photo editing software).
 
@@ -43,6 +49,8 @@ Full-sized sample output images are provided in the [outputs folder](./outputs) 
 
 You'll notice that the model trained for 250 epochs has predicted the presence of a body of water (near top-center). This body of water is indeed present, demonstrating the potential of a sufficiently-trained model to suggest improvements on our ground-truth labels.
 
+A copy of our sample trained model, `250epochs.model`, will be copied to your blob container's "models" folder during setup. If you like, you can modify `evaluation_job.json` to apply this model instead of the one you trained. Simply replace `trained.model` with `250epochs.model`, save the config file, and submit the job again with a unique job name.
+
 ## Next steps
 
-When you are done, we recommend deleting all resources you created for this tutorial. Please see the instructions in the [setup section](./setup.md) of this tutorial.
+When you are done, we recommend deleting all resources you created for this tutorial. Please see the instructions in the [setup section](./setup.md) of this tutorial. You may also be interested in our section on how to [scale this method](./scaling.md) for larger datasets and clusters.
