@@ -56,8 +56,8 @@ When training has completed, the trained model will be written to blob storage. 
 1. A navigable directory structure will be displayed. You may find the following folders:
     - `scripts`: Contains the training and evaluation scripts.
     - `training_data` and `evaluation_data`: Contain the TIF files used for training and evaluation.
-    - `models` (created by the training script): Contains the model files created during training.
-    - `evaluation_output` (created by the evaluation script): Contains the TIF files that illustrate the model's output labels for a sample region.
+    - `models`: Contains the model files created during training.
+    - `evaluation_output` (to be created later by the evaluation script): Contains the TIF files that illustrate the model's output labels for a sample region.
 
     Note that you can download a file by clicking on its name and choosing the "Download" option in the pane that appears at right.
 
