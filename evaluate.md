@@ -19,9 +19,23 @@ az batchai job show -n evaluationjob
 
 ### Accessing your evaluation job's output
 
-### Sample results
+We have applied our model to a 1 km x 1 km region centered on [a point in Charlotte County, VA](https://binged.it/2BcQfVQ). This region contains all four types of land cover that the model is able to predict: forested, herbaceous, barren/impervious, and water. The evaluation script will extract and save the [National Agricultural Imagery Program (NAIP) imagery](./outputs/NAIP.tif), [a pseudo-coloring Chesapeake Conservancy's ground-truth labels](./outputs/true_labels.tif), and [the trained model's predicted labels](./outputs/pred_labels.tif) for this region to the blob container attached to the Batch AI cluster. You can retrieve these outputs as follows:
+
+1. Log into the [Azure Portal](https://portal.azure.com).
+1. Use the search bar along the top of the screen to search for the storage account you created earlier. Click on the correct result to load the storage account's overview pane.
+1. In the "Services" section, you will links labeled "Blobs" and "Files" inside of square bounding boxes. Click on "Blobs".
+1. A list of blob containers will be displayed. Click on the container named "blobfuse" created by this tutorial.
+1. A navigable directory structure will be displayed. You will find the output images from the evaluation job under the `evaluation_output` folder. You can download files by clicking on the filename and then clicking "Download" in the pane that appears at right.
+
+These extracted TIF images will each be ~12 MB in size and can be examined using a web browser (and most image/photo editing software).
+
+### Review of sample results
+
+Full-sized sample output images are provided in the [outputs folder](./outputs) of this repository; we provide a side-by-side, zoomed-out view below for easy comparison. While the tutorial creates a model trained for only one epoch, we also include an illustration of the model's output after 250 epochs to illustrate the accuracy that can ultimately be achieved:
 
 <img src="./outputs/comparison_fullsize.PNG"/>
+
+You'll notice that the model trained for 250 epochs has predicted the presence of a body of water (near top-center). This body of water is indeed present, demonstrating the potential of a sufficiently-trained model to suggest improvements on our ground-truth labels.
 
 ## Next steps
 
