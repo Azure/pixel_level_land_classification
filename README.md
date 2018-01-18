@@ -2,7 +2,7 @@
 <img src="./outputs/comparison_w700.png"/>
 
 
-<img src="./outputs/comparison_fullsize.png"/>
+<img src="./outputs/comparison_fullsize.PNG"/>
 
 # Contributing
 
