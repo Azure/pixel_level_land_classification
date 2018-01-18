@@ -4,21 +4,26 @@ In this section of the tutorial on [pixel-level land classification from aerial 
 
 ## Prerequisites
 
+** Azure Subscription **
+
 This tutorial will require an [Azure subscription](https://azure.microsoft.com/en-us/free/) with sufficient quota to create a storage account and two NC6 (single-GPU) VMs as a Batch AI cluster. This tutorial will likely take two hours to complete on the first pass.
 
-You will also need to install the following programs:
+** Files from this repository **
+
+You will need local copies of the .json files included in this git repository. We recommend that you download or clone the full repository locally, but you can also download each file individually. (If you choose that approach, be careful to download the "raw" files -- it's common to accidentally save GitHub's HTML previews of the files instead.)
+
+** Utilities **
+This tutorial requires the following programs:
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - [AzCopy](https://docs.microsoft.com/azure/storage/common/storage-use-azcopy)
 
-These programs are available for Windows and Linux. The commands included in this tutorial were written and tested in Windows, but readers will likely find it straightforward to adapt for Linux.
+These programs are available for Windows and Linux. If you prefer not to install these programs locally, you may instead provision an [Azure Data Science Virtual Machine](https://docs.microsoft.com/azure/machine-learning/data-science-virtual-machine/provision-vm). (Both programs are pre-installed on these VMs and available on the system path.) The commands included in this tutorial were written and tested in Windows, but readers will likely find it straightforward to adapt for Linux.
 
 Once these programs are installed, open a command line interface and check that the binaries are available on the system path by issuing the commands below:
 ```
 az
 azcopy
 ```
-
-If you prefer not to install these programs locally, you may instead provision an [Azure Data Science Virtual Machine](https://docs.microsoft.com/azure/machine-learning/data-science-virtual-machine/provision-vm). (Both programs are pre-installed on these VMs and available on the system path.)
 
 ### Prepare to use the Azure CLI
 
@@ -87,6 +92,7 @@ It will take approximately ten minutes for cluster creation to complete. You can
 ```
 az batchai cluster show -n batchaidemo
 ```
+
 
 ## Next steps
 
