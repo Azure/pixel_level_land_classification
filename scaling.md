@@ -56,4 +56,19 @@ As you adapt this example to your own needs, you may find the following resource
 
 - [National Agriculture Imagery Program](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
 
-    Obtain raw data similar to our training data, but from the location and year of your preference, using the [USDA Geospatial Data Gateway](https://gdg.sc.egov.usda.gov/). You will need to convert data from MrSID format to TIF format (e.g. using [LizardTech's free GeoExpress Command Line applications](https://www.lizardtech.com/gis-tools/tools-and-utilities)) and divide large TIF files so that they can be stored in memory (e.g. using `gdal-translate`).
+    More information on the aerial imagery used for this project.
+- [USDA Geospatial Data Gateway](https://gdg.sc.egov.usda.gov/)
+    
+    Where you can obtain NAIP data for your region/year of interest.
+- [LizardTech's free GeoExpress Command Line applications](https://www.lizardtech.com/gis-tools/tools-and-utilities)
+
+    Can be used to convert from MrSID-formatted NAIP data to TIF format
+- [GDAL](http://www.gdal.org/)
+
+    Divide large TIF files so that they can be loaded into memory during training (e.g. using `gdal-translate`).
+    
+We are not able to redistribute the full 1-meter resolution land use classification dataset created by the [Chesapeake Conservancy](http://chesapeakeconservancy.org/) for the Chesapeake Bay watershed. A few alternative sources of land use data are provided below (though most are not available at 1-meter resolution).
+
+- [National Land Cover Database](https://www.mrlc.gov/finddata.php) (30-meter resolution, country-wide)
+- [USGS Gap Analysis Project](https://gapanalysis.usgs.gov/gaplandcover/data/download/) (30-meter resolution, country-wide)
+- [NOAA C-CAP FTP site](https://coast.noaa.gov/ccapftp/#/) (30-meter resolution with 1 to 5-meter resolution available in some areas; limited to coastal regions)
