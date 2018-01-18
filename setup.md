@@ -13,6 +13,7 @@ This tutorial will require an [Azure subscription](https://azure.microsoft.com/e
 You will need local copies of the .json files included in this git repository. We recommend that you download or clone the full repository locally, but you can also download each file individually. (If you choose that approach, be careful to download the "raw" files -- it's common to accidentally save GitHub's HTML previews of the files instead.)
 
 **Utilities**
+
 This tutorial requires the following programs:
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - [AzCopy](https://docs.microsoft.com/azure/storage/common/storage-use-azcopy)
