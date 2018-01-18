@@ -50,7 +50,15 @@ As you adapt this example to your own needs, you may find the following resource
 - [Batch AI Recipes repository](https://github.com/Azure/BatchAI)
 
     Demonstrates how to use other deep learning frameworks (e.g. TensorFlow, Caffe, Keras, Chainer) with Batch AI. Also includes examples on how to interact with Batch AI through its SDKs.
-- 
+- [Batch AI quick-start guide](https://docs.microsoft.com/en-us/azure/batch-ai/quickstart-cli)
+- [Batch AI CLI full documentation](https://github.com/Azure/BatchAI/blob/master/documentation/using-azure-cli-20.md)
+
+### CNTK distributed training resources
+
+- [Guide to distributed training with CNTK](https://docs.microsoft.com/en-us/cognitive-toolkit/Multiple-GPUs-and-machines)
+- [Example single-GPU vs. distributed training scripts for CNTK](https://github.com/Microsoft/CNTK/tree/master/Examples/Image/Classification/ResNet/Python) -- see also other examples in this repository
+- [Guide to developing a UserMinibatchSource for custom data types](https://docs.microsoft.com/en-us/python/api/cntk.io.userminibatchsource?view=cntk-py-2.3)
+- [CNTK Python API](https://www.cntk.ai/pythondocs/)
 
 ### Training data resources
 
