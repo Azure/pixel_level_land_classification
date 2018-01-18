@@ -1,6 +1,6 @@
 # Scaling up training
 
-If you have completed our [tutorial on pixel-level classification](https://github.com/Azure/pixel_level_land_classification), you've trained an image segmentation model for one epoch using two GPUs and eight training image pairs in <20 minutes. For our work with the Chesapeake Conservancy, we trained a similar model for 250 epochs using 148 GPUs and 1,111 training image pairs -- all in a little over two hours. This section describes how this scaling was achieved and considerations the reader might apply to their own projects.
+If you have completed our [tutorial on pixel-level classification](https://github.com/Azure/pixel_level_land_classification), you've trained an image segmentation model for one epoch using two GPUs and eight training image pairs in <20 minutes. For our work with the Chesapeake Conservancy, we trained a similar model for 250 epochs using 148 GPUs and 740 training image pairs -- all in a little over two hours. This section describes how this scaling was achieved and considerations the reader might apply to their own projects.
 
 ## Increasing worker (GPU) count
 
