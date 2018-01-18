@@ -39,4 +39,21 @@ echo %AZURE_BATCH_AI_TRAINING_NFS_IP%
 az batchai cluster create -n batchaidemo -u lcuser -p lcpassword --afs-name batchai --nfs batchaidemo --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json
 ```
 
-You may also wish to use a premium storage SKU (learn more from the output of `az batchai file-server create -h`) or [another VM SKU](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/overview#vm-sizes) to improve the 
+You may also wish to use a premium storage SKU (learn more from the output of `az batchai file-server create -h`), choose [another VM SKU](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/overview#vm-sizes), or increase the disk count/size to improve the performance of your file server.
+
+## Next steps
+
+As you adapt this example to your own needs, you may find the following resources helpful:
+
+### Batch AI resources
+
+- [Batch AI Recipes repository](https://github.com/Azure/BatchAI)
+
+    Demonstrates how to use other deep learning frameworks (e.g. TensorFlow, Caffe, Keras, Chainer) with Batch AI. Also includes examples on how to interact with Batch AI through its SDKs.
+- 
+
+### Training data resources
+
+- [National Agriculture Imagery Program](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
+
+    Obtain raw data similar to our training data, but from the location and year of your preference, using the [USDA Geospatial Data Gateway](https://gdg.sc.egov.usda.gov/). You will need to convert data from MrSID format to TIF format (e.g. using [LizardTech's free GeoExpress Command Line applications](https://www.lizardtech.com/gis-tools/tools-and-utilities)) and divide large TIF files so that they can be stored in memory (e.g. using `gdal-translate`).
