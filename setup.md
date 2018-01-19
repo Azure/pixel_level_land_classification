@@ -84,13 +84,13 @@ Expect the copy step to take 5-10 minutes.
 
 We will create an Azure Batch AI cluster containing two NC6 Ubuntu DSVMs. This two-GPU cluster will be used to train our model and then apply it to previously-unseen data. Before executing the command below, ensure that the `cluster.json` file provided in this repository (which specifies the Python packages that should be installed during setup) has been downloaded to your computer and is available on the path. We also recommend that you change the username and password to credentials of your choice.
 ```
-az batchai cluster create -n batchaidemo --user-name lcuser --password lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json  --resource-group %AZURE_RESOURCE_GROUP% --location eastus
+az batchai cluster create -n batchaidemo --user-name lcuser --password lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json --resource-group %AZURE_RESOURCE_GROUP% --location eastus
 ```
 This command will create a cluster whose credentials are a username-password pair. For increased security, we highly encourage the use of an SSH key as credential: for more information, see the [Batch AI documentation](https://github.com/Azure/BatchAI/blob/master/documentation/using-azure-cli-20.md#Admin-User-Account) and the output of the `az batchai cluster create -h` command.
 
 It will take approximately ten minutes for cluster creation to complete. You can check on progress of the provisioning process using the command below: when provisioning is complete, you should see that the "errors" field is null and that your cluster has two "idle" nodes.
 ```
-az batchai cluster show -n batchaidemo
+az batchai cluster show -n batchaidemo --resource-group %AZURE_RESOURCE_GROUP%
 ```
 
 ## Next steps
