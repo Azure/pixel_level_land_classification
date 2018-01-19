@@ -58,10 +58,8 @@ It may take ~10 minutes for the provider registration process to complete. You m
 
 We will create all resources for this tutorial in a single resource group, so that you may easily delete them when finished. Choose a name for your resource group and insert it into the bracketed expression below, then issue the commands:
 ```
-az configure --defaults location=eastus
 set AZURE_RESOURCE_GROUP=[resource group name]
-az group create --name %AZURE_RESOURCE_GROUP%
-az configure --defaults group=%AZURE_RESOURCE_GROUP%
+az group create --name %AZURE_RESOURCE_GROUP% --location eastus
 ```
 
 ### Create an Azure storage account and populate it with files
@@ -69,14 +67,14 @@ az configure --defaults group=%AZURE_RESOURCE_GROUP%
 We will create an Azure storage account to hold training and evaluation data, scripts, and output files. Choose a unique name for this storage account and insert it into the bracketed expression below. Then, issue the following commands to create your storage account and store its randomly-assigned access key:
 ```
 set STORAGE_ACCOUNT_NAME=[storage account name]
-az storage account create --name %STORAGE_ACCOUNT_NAME% --sku Standard_LRS
-for /f "delims=" %a in ('az storage account keys list --account-name %STORAGE_ACCOUNT_NAME% --query "[0].value"') do @set STORAGE_ACCOUNT_KEY=%a
+az storage account create --name %STORAGE_ACCOUNT_NAME% --sku Standard_LRS --sku Standard_LRS --resource-group %AZURE_RESOURCE_GROUP% --location eastus
+for /f "delims=" %a in ('az storage account keys list --account-name %STORAGE_ACCOUNT_NAME% --resource-group %AZURE_RESOURCE_GROUP% --query "[0].value"') do @set STORAGE_ACCOUNT_KEY=%a
 ```
 
 With the commands below, we will create an Azure File Share to hold setup and job-specific logs, as well as an Azure Blob container for fast file I/O during model training and evaluation. Then, we'll use AzCopy to copy the necessary data files for this tutorial to your own storage account.  Note that we will copy over only a subset of the available data, to save time and resources.
 ```
-az storage share create --account-name %STORAGE_ACCOUNT_NAME% --account-key %STORAGE_ACCOUNT_KEY% --name batchai
-az storage container create --account-name %STORAGE_ACCOUNT_NAME% --account-key %STORAGE_ACCOUNT_KEY% --name blobfuse
+az storage share create --account-name %STORAGE_ACCOUNT_NAME% --name batchai
+az storage container create --account-name %STORAGE_ACCOUNT_NAME% --name blobfuse
 AzCopy /Source:https://aiforearthcollateral.blob.core.windows.net/imagesegmentationtutorial /SourceSAS:"?st=2018-01-16T10%3A40%3A00Z&se=2028-01-17T10%3A40%3A00Z&sp=rl&sv=2017-04-17&sr=c&sig=KeEzmTaFvVo2ptu2GZQqv5mJ8saaPpeNRNPoasRS0RE%3D" /Dest:https://%STORAGE_ACCOUNT_NAME%.blob.core.windows.net/blobfuse /DestKey:%STORAGE_ACCOUNT_KEY% /S
 ```
 
@@ -84,17 +82,17 @@ Expect the copy step to take 5-10 minutes.
 
 ### Create an Azure Batch AI cluster
 
-We will create an Azure Batch AI cluster containing two NC6 Ubuntu DSVMs. This two-GPU cluster will be used to train our model and then apply it to previously-unseen data. Before executing the command below, ensure that the `cluster.json` file provided in this repository (which specifies the Python packages that should be installed during setup) has been downloaded to your computer and is available on the path.
+We will create an Azure Batch AI cluster containing two NC6 Ubuntu DSVMs. This two-GPU cluster will be used to train our model and then apply it to previously-unseen data. Before executing the command below, ensure that the `cluster.json` file provided in this repository (which specifies the Python packages that should be installed during setup) has been downloaded to your computer and is available on the path. We also recommend that you change the username and password to credentials of your choice.
 ```
-az batchai cluster create -n batchaidemo -u lcuser -p lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json
+az batchai cluster create -n batchaidemo --user-name lcuser --password lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json  --resource-group %AZURE_RESOURCE_GROUP% --location eastus
 ```
+This command will create a cluster whose credentials are a username-password pair. For increased security, we highly encourage the use of an SSH key as credential: for more information, see the [Batch AI documentation](https://github.com/Azure/BatchAI/blob/master/documentation/using-azure-cli-20.md#Admin-User-Account) and the output of the `az batchai cluster create -h` command.
 
 It will take approximately ten minutes for cluster creation to complete. You can check on progress of the provisioning process using the command below: when provisioning is complete, you should see that the "errors" field is null and that your cluster has two "idle" nodes.
 ```
 az batchai cluster show -n batchaidemo
 ```
 
-
 ## Next steps
 
-You have now completed the setup steps required. We recommend proceeding to the [model training](./train.md) section of this repository.
+You have now completed all of the setup steps required for this tutorial. We recommend proceeding to the [model training](./train.md) section of this repository.
