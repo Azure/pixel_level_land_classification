@@ -1,5 +1,4 @@
 {
-    "location": "eastus",
     "properties":
     {
         "stdOutErrPathPrefix": "$AZ_BATCHAI_MOUNT_ROOT/afs",
