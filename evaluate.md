@@ -35,17 +35,16 @@ To visualize this output, we find the most likely label for each pixel and color
 
 ### Accessing your evaluation job's output
 
-We have applied our model to a 1 km x 1 km region centered on [a point in Charlotte County, VA](https://binged.it/2BcQfVQ). This region contains all four types of land cover that the model is able to predict: forested, herbaceous, barren/impervious, and water. The evaluation script will extract and save the [National Agricultural Imagery Program (NAIP) imagery](./outputs/NAIP.tif), [a pseudo-coloring Chesapeake Conservancy's ground-truth labels](./outputs/true_labels.tif), and [the trained model's predicted labels](./outputs/pred_labels.tif) for this region to the blob container attached to the Batch AI cluster. You can retrieve these outputs as follows:
+We have applied our model to a 1 km x 1 km region centered on [a point in Charlotte County, VA](https://binged.it/2BcQfVQ). This region contains all four types of land cover that the model is able to predict: forested, herbaceous, barren/impervious, and water. The evaluation script will extract and save the [National Agricultural Imagery Program (NAIP) imagery](./outputs/NAIP.tif), [a pseudo-coloring Chesapeake Conservancy's ground-truth labels](./outputs/true_labels.tif), and [the trained model's predicted labels](./outputs/pred_labels.tif) for this region to the blob container attached to the Batch AI cluster.
 
-1. Log into the [Azure Portal](https://portal.azure.com).
-1. Use the search bar along the top of the screen to search for the storage account you created earlier. Click on the correct result to load the storage account's overview pane.
-1. In the "Services" section, you will links labeled "Blobs" and "Files" inside of square bounding boxes. Click on "Blobs".
-1. A list of blob containers will be displayed. Click on the container named "blobfuse" created by this tutorial.
-1. A navigable directory structure will be displayed. You will find the output images from the evaluation job under the `evaluation_output` folder. 
+For this job, we made use of Batch AI's "output directory" feature. This option is especially handy for ensuring that a job's output is never overwritten by subsequent jobs. The `evaluation_job.json` config file defines an output directory with id "IMAGES": this directory will be created by the job at runtime and its full path stored in a variable called `$AZ_BATCHAI_OUTPUT_IMAGES`. (The output directory name will contain a random job identifier, which is used to ensure that the files inside are not overwritten by subsequent jobs.)
 
-    You can download files by clicking on the filename and then clicking "Download" in the pane that appears at right. You can also use this interface to upload new files, e.g. if you would like to modify the code in our training and evaluation scripts.
+After your job has finished running, you can get the download URLs for the output files in this randomly-named directory using the following command:
+```
+az batchai job list-files -n evaluationjob -g %AZURE_RESOURCE_GROUP% -d IMAGES
+```
 
-These extracted TIF images will each be ~12 MB in size and can be examined using a web browser (and most image/photo editing software).
+Simply visit the URLs to download the three output files locally.
 
 ### Review of sample results
 
