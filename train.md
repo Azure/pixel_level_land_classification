@@ -6,7 +6,7 @@ In this section, you will use your Batch AI cluster to train an image segmentati
 
 Before executing the command below, ensure that the `training_job.json` file contained in this git repository has been downloaded to your computer and is available on the path.
 ```
-az batchai job create -n trainingjob -c training_job.json -r batchaidemo --resource-group %AZURE_RESOURCE_GROUP%
+az batchai job create -n trainingjob -c training_job.json -r batchaidemo --resource-group %AZURE_RESOURCE_GROUP% --location eastus
 ```
 
 This job will take 10-20 minutes to run; while waiting, you can read the section below for more information on what the job is doing. You can also check on the job's progress using the following command:
