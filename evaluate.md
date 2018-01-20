@@ -15,8 +15,8 @@ az batchai job show -n evaluationjob --resource-group %AZURE_RESOURCE_GROUP%
 
 When the job status changes to "Finished", the evaluation job is complete. You can also monitor the standard output and error messages as they're produced using the following commands:
 ```
-az batchai job stream-file -d stdouterr -j trainingjob -n stdout.txt -g %AZURE_RESOURCE_GROUP%
-az batchai job stream-file -d stdouterr -j trainingjob -n stderr.txt -g %AZURE_RESOURCE_GROUP%
+az batchai job stream-file -d stdouterr -j evaluationjob -n stdout.txt -g %AZURE_RESOURCE_GROUP%
+az batchai job stream-file -d stdouterr -j evaluationjob -n stderr.txt -g %AZURE_RESOURCE_GROUP%
 ```
 
 To exit the streaming view, press Ctrl+C. You will be asked whether to terminate the job if it is still running: press "N" to indicate that you want the job to continue running.
