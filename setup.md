@@ -96,3 +96,10 @@ az batchai cluster show -n batchaidemo --resource-group %AZURE_RESOURCE_GROUP%
 ## Next steps
 
 You have now completed all of the setup steps required for this tutorial. We recommend proceeding to the [model training](./train.md) section of this repository.
+
+## Cleanup
+
+When you have completed all sections of interest to you in this repository, be sure to delete the resources you created with the following command:
+```
+az group delete -n %AZURE_RESOURCE_GROUP% 
+```
