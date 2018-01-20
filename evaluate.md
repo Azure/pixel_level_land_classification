@@ -6,11 +6,11 @@ We will apply the trained model to an approximately 1 km x 1 km region centered 
 
 We will launch an evaluation job to apply our trained model to a specified region in our evaluation data. Before executing the command below, ensure that the `evaluation_job.json` file contained in this git repository has been downloaded to your computer and is available on the path, and that the training job has finished running.
 ```
-az batchai job create -n evaluationjob -c evaluation_job.json -r batchaidemo
+az batchai job create -n evaluationjob -c evaluation_job.json -r batchaidemo --resource-group %AZURE_RESOURCE_GROUP% --location eastus
 ```
 This job will take ~5 minutes to run; while waiting, you can read the section below for more information on what the job is doing. You can check on the job's progress using the following command:
 ```
-az batchai job show -n evaluationjob
+az batchai job show -n evaluationjob --resource-group %AZURE_RESOURCE_GROUP%
 ```
 
 When the job status changes to "Finished", the evaluation job is complete.
