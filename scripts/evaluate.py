@@ -84,6 +84,7 @@ def save_label_image(input_image, output_filename, hard=True):
 				label_image[rgb_idx, :, :] += (my_label_indices == label_idx) *\
 					color_map[label_idx, rgb_idx]
 	else:
+		input_image = np.exp(input_image) / np.sum(np.exp(input_image), axis=0)
 		for label_idx in range(num_labels):
 			for rgb_idx in range(3):
 				label_image[rgb_idx, :, :] += input_image[label_idx, :, :] * \
