@@ -80,4 +80,8 @@ In your future work, you may find it handy to access these files without navigat
 
 Now that you have produced a trained model, you can test its performance in the following section on [applying your model to new aerial images](./evaluate.md). You may later wish to return to this section and train a model for more than one epoch, to improve its performance.
 
+You may like to learn more about [scaling our training method](./scaling.md) for larger datasets and clusters.
+
+You may also be interested in using your trained model in ArcGIS Pro. Click [here](../README.MD) to return to the main page of this repository, where you can find directions on how to provision a Geo AI DSVM with ArcGIS Pro installed, and employ your trained model in an ArcGIS project.
+
 If you decide to stop pursuing the tutorial after this step, we recommend deleting all Azure resources you created. Please see the instructions in the [setup section](./setup.md) of this tutorial.

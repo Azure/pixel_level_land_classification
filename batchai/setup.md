@@ -1,6 +1,6 @@
 # Prerequisites and setup steps
 
-In this section of the tutorial on [pixel-level land classification from aerial imagery](https://github.com/Azure/pixel_level_land_classification), we describe the steps needed to create an Azure Batch AI cluster with access to all necessary files to complete this tutorial. Once you have completed this section, you'll be ready to [train a model from scratch](./train.md) using our sample data and provided scripts.
+In this section of the tutorial on [pixel-level land classification from aerial imagery](https://github.com/Azure/pixel_level_land_classification), we describe the steps needed to create an Azure Batch AI cluster with access to all necessary files to complete this tutorial. Once you have completed this section, you'll be ready to [train a model from scratch](../train.md) using our sample data and provided scripts.
 
 ## Prerequisites
 
@@ -96,6 +96,8 @@ az batchai cluster show -n batchaidemo --resource-group %AZURE_RESOURCE_GROUP%
 ## Next steps
 
 You have now completed all of the setup steps required for this tutorial. We recommend proceeding to the [model training](./train.md) section of this repository.
+
+Click [here](../README.MD) to return to the main page of this repository for more information.
 
 ## Cleanup
 

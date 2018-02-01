@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "nodeSetup": {
+      "setupTask": {
+        "commandLine": "sudo /anaconda/envs/py35/bin/pip install tifffile pillow; sudo sh -c 'source /anaconda/bin/activate py35 && conda install gdal -y'; sudo sh -c 'source /anaconda/bin/activate py35 && conda install -c conda-forge basemap -y'",
+        "stdOutErrPathPrefix": "$AZ_BATCHAI_MOUNT_ROOT/afs"
+      }
+    }
+  }
+}

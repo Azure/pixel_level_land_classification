@@ -1,24 +1,27 @@
 # Pixel-level land use classification
 
-This repository contains a tutorial illustrating how to create a deep neural network model that accepts an aerial image as input and returns a land cover label (forested, water, etc.) for every pixel in the image. Microsoft's [Cognitive Toolkit (CNTK)](https://www.microsoft.com/cognitive-toolkit/) is used to train and evaluate the model on an [Azure Batch AI](https://docs.microsoft.com/azure/batch-ai/) GPU cluster. The method shown here was developed in collaboration between the [Chesapeake Conservancy](http://chesapeakeconservancy.org/), [ESRI](https://www.esri.com), and [Microsoft Research](https://www.microsoft.com/research/) as part of Microsoft's [AI for Earth](https://www.microsoft.com/en-us/aiforearth) initiative.
+This repository contains a tutorial illustrating how to create a deep neural network model that accepts an aerial image as input and returns a land cover label (forested, water, etc.) for every pixel in the image. Microsoft's [Cognitive Toolkit (CNTK)](https://www.microsoft.com/cognitive-toolkit/) is used to train and evaluate the model on an [Azure Geo AI Data Science Virtual Machine]() or an [Azure Batch AI](https://docs.microsoft.com/azure/batch-ai/) GPU cluster. The method shown here was developed in collaboration between the [Chesapeake Conservancy](http://chesapeakeconservancy.org/), [ESRI](https://www.esri.com), and [Microsoft Research](https://www.microsoft.com/research/) as part of Microsoft's [AI for Earth](https://www.microsoft.com/en-us/aiforearth) initiative.
 
-We recommend budgeting two hours for a full walkthrough of this tutorial. The code, shell commands, trained models, and sample images provided here may prove helpful even if you prefer not to complete the tutorial: we have provided explanations and direct links to these materials where possible.
+We recommend budgeting two hours for a full walkthrough of this tutorial. The code, shell commands, trained models, and sample images provided here may prove helpful even if you prefer not to complete the walkthrough: we have provided explanations and direct links to these materials where possible.
 
 ## How to Get Started
 
-1. [Install prerequisites and set up Azure resources](./setup.md)
+The training and evaluation steps of this tutorial can be performed on either:
+- an Azure Geo AI Data Science VM
+    - Train a model on a data sample using Jupyter notebooks
+    - Deploy the trained model directly in ESRI's ArcGIS Pro
+- an Azure Batch AI GPU cluster
+    - Set up your cluster and submit jobs to it from your command line
+    - Learn how to scale to large clusters for faster training on larger datasets
+    - (Optional) After training, download your model and use instructions from the Geo AI DSVM tutorials to deploy it in ArcGIS Pro.
 
-    After you complete this section, you'll have created a Batch AI GPU cluster loaded with the sample data and scripts required by this tutorial.
-1. [Train a land classification model from scratch](./train.md)
+| Geo AI DSVM | Batch AI |
+|-------------|----------|
+| [Create a Geo AI Data Science VM](./geoaidsvm/setup.md) | [Create a Batch AI cluster](./batchai/setup.md): create a Batch AI GPU cluster |
+| [Train a model in a Jupyter notebook](./geoaidsvm/Train_a_land_classification_model_from_scratch.ipynb) | [Train a model on the Batch AI cluster](./batchai/train.md) |
+| [Evaluate the model using a Jupyter notebook](./geoaidsvm/Apply_trained_model_to_new_data.ipynb) | [Evaluate the model using a GPU cluster](./batchai/evaluate.md) |
+| [Deploy your model in ArcGIS Pro](./geoaidsvm/Apply_trained_model_in_ArcGIS_Pro.ipynb) | [Learn how to scale up training](./batchai/scaling.md) |
 
-    In this section, you'll produce a trained CNTK model that you can use anywhere for pixel-level land cover prediction.
-1. [Apply your trained model to new aerial images](./evaluate.md)
-
-    You'll predict land use on a 1 km x 1 km region not previously seen during training, and examine your results in full color.
-1. [Learn more about scaling up training](./scaling.md)
-
-    You'll see how we scaled this solution to train a model for 250 epochs, on a much larger dataset, in a little over two hours!
-    
 ## Sample Output
 
 This tutorial will train a pixel-level land use classifier for a single epoch: your model will produce results similar to bottom-left. By expanding the training dataset and increasing the number of training epochs, we achieved results like the example at bottom right. The trained model is accurate enough to detect some features, like the small pond at top-center, that were not correctly annotated in the ground-truth labels.

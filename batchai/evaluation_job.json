@@ -1,0 +1,19 @@
+{
+    "properties":
+    {
+        "outputDirectories": [{
+            "id": "IMAGES",
+            "pathPrefix": "$AZ_BATCHAI_MOUNT_ROOT/blobfuse/evaluation_output",
+            "pathSuffix": "images"
+        }],
+        "stdOutErrPathPrefix": "$AZ_BATCHAI_MOUNT_ROOT/afs",
+        "nodeCount": 1,
+        "toolType": "cntk",
+        "cntkSettings": {
+            "languageType": "Python",
+            "pythonScriptFilePath": "$AZ_BATCHAI_MOUNT_ROOT/blobfuse/scripts/evaluate.py",
+            "commandLineArgs": "--center_lat 37.055522 --center_lon -78.638640 --input_filename $AZ_BATCHAI_MOUNT_ROOT/blobfuse/evaluation_data/C14_NAIP.tif --model_filename $AZ_BATCHAI_MOUNT_ROOT/blobfuse/models/trained.model --output_dir $AZ_BATCHAI_OUTPUT_IMAGES",
+            "numberOfProcesses": 1
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "properties":
+    {
+        "stdOutErrPathPrefix": "$AZ_BATCHAI_MOUNT_ROOT/afs",
+        "nodeCount": 2,
+        "toolType": "cntk",
+        "cntkSettings": {
+            "languageType": "Python",
+            "pythonScriptFilePath": "$AZ_BATCHAI_MOUNT_ROOT/blobfuse/scripts/train_distributed.py",
+            "commandLineArgs": "--input_dir $AZ_BATCHAI_MOUNT_ROOT/blobfuse/training_data --model_dir $AZ_BATCHAI_MOUNT_ROOT/blobfuse/models --num_epochs 1",
+            "numberOfProcesses": 2
+        }
+    }
+}
