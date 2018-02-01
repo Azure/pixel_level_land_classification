@@ -13,14 +13,14 @@ The training and evaluation steps of this tutorial can be performed on either:
 - an Azure Batch AI GPU cluster
     - Set up your cluster and submit jobs to it from your command line
     - Learn how to scale to large clusters for faster training on larger datasets
-    - (Optional) After training, download your model and use instructions from the Geo AI DSVM tutorials to deploy it in ArcGIS Pro.
+    - (Optional) After training, download your model and use instructions from the Geo AI DSVM tutorials to deploy it in ArcGIS Pro
 
 | Geo AI DSVM | Batch AI |
 |-------------|----------|
-| [Create a Geo AI Data Science VM](./geoaidsvm/setup.md) | [Create a Batch AI cluster](./batchai/setup.md): create a Batch AI GPU cluster |
-| [Train a model in a Jupyter notebook](./geoaidsvm/Train_a_land_classification_model_from_scratch.ipynb) | [Train a model on the Batch AI cluster](./batchai/train.md) |
-| [Evaluate the model using a Jupyter notebook](./geoaidsvm/Apply_trained_model_to_new_data.ipynb) | [Evaluate the model using a GPU cluster](./batchai/evaluate.md) |
-| [Deploy your model in ArcGIS Pro](./geoaidsvm/Apply_trained_model_in_ArcGIS_Pro.ipynb) | [Learn how to scale up training](./batchai/scaling.md) |
+|: [Create a Geo AI Data Science VM](./geoaidsvm/setup.md) :|: [Create a Batch AI cluster](./batchai/setup.md) :|
+|: [Train a model in a Jupyter notebook](./geoaidsvm/Train_a_land_classification_model_from_scratch.ipynb) :|: [Train a model on the Batch AI cluster](./batchai/train.md) :|
+|: [Evaluate the model using a Jupyter notebook](./geoaidsvm/Apply_trained_model_to_new_data.ipynb) :|: [Evaluate the model using a GPU cluster](./batchai/evaluate.md) :|
+|: [Deploy your model in ArcGIS Pro](./geoaidsvm/Apply_trained_model_in_ArcGIS_Pro.ipynb) :|: [Learn how to scale up training](./batchai/scaling.md) :|
 
 ## Sample Output
 
