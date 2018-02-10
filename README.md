@@ -18,9 +18,9 @@ The training and evaluation steps of this tutorial can be performed on either:
 | Geo AI DSVM | Batch AI |
 |-------------|----------|
 | [Create a Geo AI Data Science VM](./geoaidsvm/setup.md) | [Create a Batch AI cluster](./batchai/setup.md) |
-| [Train a model in a Jupyter notebook](./geoaidsvm/Train_a_land_classification_model_from_scratch.ipynb) | [Train a model on the Batch AI cluster](./batchai/train.md) |
-| [Evaluate the model using a Jupyter notebook](./geoaidsvm/Apply_trained_model_to_new_data.ipynb) | [Evaluate the model using a GPU cluster](./batchai/evaluate.md) |
-| [Deploy your model in ArcGIS Pro](./geoaidsvm/Apply_trained_model_in_ArcGIS_Pro.ipynb) | [Learn how to scale up training](./batchai/scaling.md) |
+| [Train a model in a Jupyter notebook](./geoaidsvm/02_Train_a_land_classification_model_from_scratch.ipynb) | [Train a model on the Batch AI cluster](./batchai/train.md) |
+| [Evaluate the model using a Jupyter notebook](./geoaidsvm/03_Apply_trained_model_to_new_data.ipynb) | [Evaluate the model using a GPU cluster](./batchai/evaluate.md) |
+| [Deploy your model in ArcGIS Pro](./geoaidsvm/04_Apply_trained_model_in_ArcGIS_Pro.ipynb) | [Learn how to scale up training](./batchai/scaling.md) |
 
 ## Sample Output
 
