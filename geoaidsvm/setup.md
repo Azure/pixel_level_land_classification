@@ -14,6 +14,7 @@ Note: These instructions may change as the Geo AI DSVM becomes publicly availabl
 1. On the Settings pane, choose an "NC6," "NC12," or "NC24" VM size to select a VM with 1, 2, or 4 GPUs, then click OK.
     - The tutorial can be completed with a single GPU. If you would like to explore the time savings achieved by training with multiple GPUs, you will need to select either an NC12 or NC24 VM size.
     - If you do not see the "NC" VM sizes as options, you may need to choose a different location on the Basics pane.
+    - If you do not choose an "NC" VM size, you will likely encounter failures during model training later in this tutorial.
 1. Confirm your choices and buy the VM to begin deployment.
 
 Deployment will likely take 10-20 minutes to complete. When it has finished, a link to your VM should be added to your dashboard in Azure Portal. (You can also find your VM by name using the search utility.)
