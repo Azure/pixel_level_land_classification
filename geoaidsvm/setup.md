@@ -11,7 +11,7 @@ Note: These instructions may change as the Geo AI DSVM becomes publicly availabl
 1. In the Basics pane, provide your desired credentials, subscription, resource group, and deployment region, then click "OK."
     - We recommend creating a new resource group, so that all associated resources can be easily deleted when you are done with the tutorial.
     - If you have no preference, we recommend using the "East US" location: this will speed up transfer of tutorial files to your machine.
-1. On the Settings pane, choose an "NC6," "NC12," or "NC24" VM size to select a VM with 1, 2, or 4 GPUs, then click OK.
+1. On the Settings pane, choose an "NC6," "NC12," or "NC24" VM size to select a VM with 1, 2, or 4 GPUs, then click "OK".
     - The tutorial can be completed with a single GPU. If you would like to explore the time savings achieved by training with multiple GPUs, you will need to select either an NC12 or NC24 VM size.
     - If you do not see the "NC" VM sizes as options, you may need to choose a different location on the Basics pane.
     - If you do not choose an "NC" VM size, you will likely encounter failures during model training later in this tutorial.
