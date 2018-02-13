@@ -8,7 +8,7 @@ If you have completed the [training section](./train.md) of our [tutorial on pix
 
 Doubling the number of workers would ideally decrease the time required to train the model by half. In practice, the actual speed-up is lower due to overhead in communication between workers and our use of a synchronous training method. We show below that we achieved near-linear speed-ups between 1 and 64 workers, improvements in training time eventually becoming more marginal. (We report the average epoch duration after training data load to memory, a time-intensive step which does not scale with worker number.)
 
-<img src="outputs/epoch_duration_scaling.png">
+<img src="../outputs/epoch_duration_scaling.png">
 
 We expect that the following modifications would further improve training time for large clusters (though we did not pursue them for this use case):
 - Using workers connected by Infiniband (e.g. the [NC24r Azure VM SKU](https://azure.microsoft.com/en-us/blog/azure-n-series-general-availability-on-december-1/)) to speed up communication between workers
@@ -82,4 +82,4 @@ We are not able to redistribute the full 1-meter resolution land use classificat
 - [NOAA C-CAP FTP site](https://coast.noaa.gov/ccapftp/#/) (30-meter resolution with 1 to 5-meter resolution available in some areas; limited to coastal regions)
 
 
-Click [here](../README.MD) to return to the main page of this repository for more information.
+Click [here](../README.md) to return to the main page of this repository for more information.
