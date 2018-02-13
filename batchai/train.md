@@ -14,7 +14,7 @@ This job will take 10-20 minutes to run; while waiting, you can read the section
 az batchai job show -n trainingjob --resource-group %AZURE_RESOURCE_GROUP%
 ```
 
-When the job status changes to "Finished", the training job is complete. You can also monitor the standard output and error messages as they're produced using the following commands:
+When the job status indicated by "executionState" changes from "running" to "succeeded", the training job is complete. You can also monitor the standard output and error messages as they're produced using the following commands:
 ```
 az batchai job stream-file -d stdouterr -j trainingjob -n stdout.txt -g %AZURE_RESOURCE_GROUP%
 az batchai job stream-file -d stdouterr -j trainingjob -n stderr.txt -g %AZURE_RESOURCE_GROUP%
@@ -26,7 +26,7 @@ To exit the streaming view, press Ctrl+C. You will be asked whether to terminate
 
 ### The job config file, `training_job.json`
 
-The `training_job.json` file specifies where the training script is located and what arguments it will take, as well as how the distributed training job should be launched. Since we've specified that this is a CNTK training job, Batch AI will launch the job using `mpiexec` to coordinate distributed training between the specified number of workers/processes. (Batch AI also streamlines distributed training for [other supported deep learning frameworks](https://github.com/Azure/BatchAI/tree/master/recipes).) Notice that filepaths in `job.json` are defined relative to `$AZ_LEARNING_MOUNT_ROOT`, the location on each of your cluster's VMs where the file share (`$AZ_LEARNING_MOUNT_ROOT/afs`) and blob storage container (`$AZ_LEARNING_MOUNT_ROOT/blobfuse`) have been mounted.
+The `training_job.json` file specifies where the training script is located and what arguments it will take, as well as how the distributed training job should be launched. Since we've specified that this is a CNTK training job, Batch AI will launch the job using `mpiexec` to coordinate distributed training between the specified number of workers/processes. (Batch AI also streamlines distributed training for [other supported deep learning frameworks](https://github.com/Azure/BatchAI/tree/master/recipes).) Notice that filepaths in `training_job.json` are defined relative to `$AZ_BATCHAI_MOUNT_ROOT`, the location on each of your cluster's VMs where the file share (`$AZ_BATCHAI_MOUNT_ROOT/afs`) and blob storage container (`$AZ_BATCHAI_MOUNT_ROOT/blobfuse`) have been mounted.
 
 
 By default, the model will be trained for just one epoch (see the `num_epochs` parameter in `training_job.json`) and the eight provided training images pairs. This choice minimizes the runtime of the tutorial but will not result in a very performant model. For comparison, our full-scale training was performed for 250 epochs using 740 training image pairs.
@@ -56,7 +56,7 @@ We encourage the reader to explore the output files that the training script wri
     - The logs created during cluster creation are under `batchai/[subscription id]/[storage account name]/clusters/batchaidemo`.
     - The logs created during training are under `batchai/[subscription id]/[storage account name]/jobs/trainingjob`.
 
-   Note that you can download a file by clicking on its name and choosing the "Download" option the pane that appears along the right side of your screen.
+   Note that you can download a file by clicking on its name and choosing the "Download" option on the pane that appears along the right side of your screen.
 
 When training has completed, the trained model will be written to blob storage. You can find this file from Azure Portal as follows:
 1. Navigate to the storage account's overview pane as described above, then click on "Blobs".
@@ -70,7 +70,7 @@ When training has completed, the trained model will be written to blob storage. 
     Note that you can download a file by clicking on its name and choosing the "Download" option in the pane that appears at right.
 
 In your future work, you may find it handy to access these files without navigating through the Portal. Additional options include:
-- [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) for Windows/Linux/Max - provides an alternative GUI interface
+- [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) for Windows/Linux/Mac - provides an alternative GUI interface
 - Mounting an Azure File Share as a local disk ([Windows](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows)/[Linux](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-linux)/[Mac](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-mac))
 - Using the Azure CLI to [retrieve files from Azure storage accounts](https://docs.microsoft.com/en-us/azure/storage/common/storage-azure-cli) (see also the [API doc](https://docs.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest))
 - Connecting to a node in your cluster via SSH or SCP and accessing the storage that has been mounted there (typically under `/mnt/batch/tasks/shared/LS_root/mounts`)
