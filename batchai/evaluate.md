@@ -13,7 +13,7 @@ This job will take ~5 minutes to run; while waiting, you can read the section be
 az batchai job show -n evaluationjob --resource-group %AZURE_RESOURCE_GROUP%
 ```
 
-When the job status changes to "Finished", the evaluation job is complete. You can also monitor the standard output and error messages as they're produced using the following commands:
+When the job status indicated by the "executionState" changes to "succeeded", the evaluation job is complete. You can also monitor the standard output and error messages as they're produced using the following commands:
 ```
 az batchai job stream-file -d stdouterr -j evaluationjob -n stdout.txt -g %AZURE_RESOURCE_GROUP%
 az batchai job stream-file -d stdouterr -j evaluationjob -n stderr.txt -g %AZURE_RESOURCE_GROUP%
@@ -62,4 +62,4 @@ When you are done, we recommend deleting all resources you created for this tuto
 
 You may wish to learn more about [scaling our training method](./scaling.md) for larger datasets and clusters.
 
-You may also be interested in using your trained model in ArcGIS Pro. Click [here](../README.MD) to return to the main page of this repository, where you can find directions on how to provision a Geo AI DSVM with ArcGIS Pro installed, and employ your trained model in an ArcGIS project.
+You may also be interested in using your trained model in ArcGIS Pro. Click [here](../README.md) to return to the main page of this repository, where you can find directions on how to provision a Geo AI DSVM with ArcGIS Pro installed, and employ your trained model in an ArcGIS project.
