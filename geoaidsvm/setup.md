@@ -24,10 +24,11 @@ Deployment will likely take 10-20 minutes to complete. When it has finished, a l
 1. Navigate to your VM's pane in Azure Portal.
 1. Along the top of the pane, you should see a "Connect" button. Click this to download an RDP file for connection to your VM via remote desktop.
 1. Your connection instructions will vary depending on your local machine's operating system:
-    - On Windows, double-click on the RDP file and supply your credentials to connect. (You may need to choose "Use a different account" and place a backslash in front of your username to override your default domain settings.)
+    - On Windows, double-click on the RDP file and supply the credentials you chose during provisioning to connect. (You may need to choose "Use a different account" and place a backslash in front of your username to override your default domain settings.)
     - On Mac, you will need to install an application to connect using the RDP file. Further instructions are available [here](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-mac).
 1. Once you have connected to your VM, click on the "Jupyter Notebook (py35)" icon on the desktop to launch a Jupyter Notebook server. 
     - Note: At the time of this writing, the notebooks are not yet included in the DSVM image; clone the repo and copy them to this location by hand.
+    - This will launch a new browser window or tab showing the Notebook Dashboard, a control panel that allows you to select which notebook to open.
     - You may need to copy a URL from the auto-launched window into your preferred web browser in order to view the provided sample notebooks.
 1. Navigate to the "notebooks/GeoAIDSVM" subfolder and click on the `Intro_to_pixel-level_land_classification.ipynb` file to launch it.
 
