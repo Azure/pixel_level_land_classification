@@ -31,13 +31,14 @@ To increase the number of worker nodes in your cluster during deployment, simply
 
 At the time that we performed full model training for the Chesapeake Conservancy (9/2017), Azure Batch AI did not yet offer data access from blob storage via blobfuse. Instead, we provisioned a Network File System (NFS) to host our data for concurrent access by many workers. This option is preferable to storing data on an Azure File Share, but we believe that accessing data from blob storage (as demonstrated in this tutorial) will now be preferable for most users.
 
-If you would like to try using an NFS as your data store, you may modify the setup steps in [setup.md](../setup.md) to create a file server and mount it on a new cluster. You can use your favorite SSH or SCP agent to upload your data files under the `/mnt/data` directory of the file server, so that they will be accessible from your cluster.
+If you would like to try using an NFS as your data store, you may modify the setup steps in [setup.md](../setup.md) to create a file server and mount it on a new cluster. You may wish to change the username and password for both file server and Batch AI cluster to credentials of your choosing.
 ```
 az batchai file-server create -n batchaidemo -u yourusername -p yourpassword --vm-size Standard_D2_V2 --disk-count 1 --disk-size 1000 --storage-sku Standard_LRS
 for /f "delims=" %a in ('az batchai file-server list -g %AZURE_RESOURCE_GROUP% --query "[?name == 'batchaidemo'].mountSettings.fileServerPublicIp | [0]"') do @set AZURE_BATCH_AI_TRAINING_NFS_IP=%a
 echo %AZURE_BATCH_AI_TRAINING_NFS_IP%
 az batchai cluster create -n batchaidemo -u lcuser -p lcpassword --afs-name batchai --nfs batchaidemo --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json
 ```
+You can then use your favorite SSH or SCP agent to upload your data files under the `/mnt/data` directory of the file server, so that they will be accessible from your cluster. The IP address for your NFS will have been printed to your command prompt by the `echo` command above.
 
 You may also wish to use a premium storage SKU (learn more from the output of `az batchai file-server create -h`), choose [another VM SKU](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/overview#vm-sizes), or increase the disk count/size to improve the performance of your file server.
 
