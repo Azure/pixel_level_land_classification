@@ -30,6 +30,6 @@ Deployment will likely take 10-20 minutes to complete. When it has finished, a l
     - Note: At the time of this writing, the notebooks are not yet included in the DSVM image; clone the repo and copy them to this location by hand.
     - This will launch a new browser window or tab showing the Notebook Dashboard, a control panel that allows you to select which notebook to open.
     - You may need to copy a URL from the auto-launched window into your preferred web browser in order to view the provided sample notebooks.
-1. Navigate to the "notebooks/GeoAIDSVM" subfolder and click on the `Intro_to_pixel-level_land_classification.ipynb` file to launch it.
+1. Navigate to the "notebooks/GeoAIDSVM" subfolder and click on the `01_Intro_to_pixel-level_land_classification.ipynb` file to launch it.
 
 This notebook will contain an explanation of the other notebooks in the subfolder, including a recommended order for reading and executing them. Note that code cells within the notebook can be executed by selecting the cell and pressing Ctrl+Enter.
