@@ -25,6 +25,7 @@ Once these programs are installed, open a command line interface and check that 
 az
 azcopy
 ```
+If not, you may need to [edit the system path](http://www.zdnet.com/article/windows-10-tip-point-and-click-to-edit-the-system-path-variable/) to point to the folders containing these binaries (e.g., `C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy`) and load a fresh command prompt.
 
 ### Prepare to use the Azure CLI
 
@@ -38,12 +39,12 @@ You will now indicate which Azure subscription should be charged for the resourc
 az account list
 ```
 
-Identify the subscription of interest in the JSON-formatted output. Copy its "id" value into the bracketed expression in the command below, then issue the command to set the current subscription.
+Identify the subscription of interest in the JSON-formatted output. Use its "id" value to replace the bracketed expression in the command below, then issue the command to set the current subscription.
 ```
 az account set -s [subscription id]
 ```
 
-Register the Batch/BatchAI providers and grant Batch AI "Network Contributor" access on your subscription using the following commands. Note that you will need to copy your subscription's id into the bracketed expression before executing the command.
+Register the Batch/BatchAI providers and grant Batch AI "Network Contributor" access on your subscription using the following commands. Note that you will need to copy your subscription's id in place of the bracketed expression before executing the command.
 ```
 az provider register -n Microsoft.Batch
 az provider register -n Microsoft.BatchAI
@@ -56,22 +57,23 @@ It may take ~10 minutes for the provider registration process to complete. You m
 
 ### Create an Azure resource group
 
-We will create all resources for this tutorial in a single resource group, so that you may easily delete them when finished. Choose a name for your resource group and insert it into the bracketed expression below, then issue the commands:
+We will create all resources for this tutorial in a single resource group, so that you may easily delete them when finished. Choose a name for your resource group and insert it in place of the bracketed expression below, then issue the commands:
 ```
 set AZURE_RESOURCE_GROUP=[resource group name]
 az group create --name %AZURE_RESOURCE_GROUP% --location eastus
 ```
+You may use other locations, but we recommend `eastus` for proximity to the data that will be copied into your storage account, and because the necessary VM type (NC series) is available in the East US region.
 
 ### Create an Azure storage account and populate it with files
 
-We will create an Azure storage account to hold training and evaluation data, scripts, and output files. Choose a unique name for this storage account and insert it into the bracketed expression below. Then, issue the following commands to create your storage account and store its randomly-assigned access key:
+We will create an Azure storage account to hold training and evaluation data, scripts, and output files. Choose a unique name for this storage account and insert it in place of the bracketed expression below. Then, issue the following commands to create your storage account and store its randomly-assigned access key:
 ```
 set STORAGE_ACCOUNT_NAME=[storage account name]
 az storage account create --name %STORAGE_ACCOUNT_NAME% --sku Standard_LRS --sku Standard_LRS --resource-group %AZURE_RESOURCE_GROUP% --location eastus
 for /f "delims=" %a in ('az storage account keys list --account-name %STORAGE_ACCOUNT_NAME% --resource-group %AZURE_RESOURCE_GROUP% --query "[0].value"') do @set STORAGE_ACCOUNT_KEY=%a
 ```
 
-With the commands below, we will create an Azure File Share to hold setup and job-specific logs, as well as an Azure Blob container for fast file I/O during model training and evaluation. Then, we'll use AzCopy to copy the necessary data files for this tutorial to your own storage account.  Note that we will copy over only a subset of the available data, to save time and resources.
+With the commands below, we will create an Azure File Share to hold setup and job-specific logs, as well as an Azure Blob container for fast file I/O during model training and evaluation. (The file share offers more options for retrieving your log files, while data access will be faster from blob containers.) Then, we'll use AzCopy to copy the necessary data files for this tutorial to your own storage account.  Note that we will copy over only a subset of the available data, to save time and resources.
 ```
 az storage share create --account-name %STORAGE_ACCOUNT_NAME% --name batchai
 az storage container create --account-name %STORAGE_ACCOUNT_NAME% --name blobfuse
@@ -82,7 +84,7 @@ Expect the copy step to take 5-10 minutes.
 
 ### Create an Azure Batch AI cluster
 
-We will create an Azure Batch AI cluster containing two NC6 Ubuntu DSVMs. This two-GPU cluster will be used to train our model and then apply it to previously-unseen data. Before executing the command below, ensure that the `cluster.json` file provided in this repository (which specifies the Python packages that should be installed during setup) has been downloaded to your computer and is available on the path. We also recommend that you change the username and password to credentials of your choice.
+We will create an Azure Batch AI cluster containing two NC6 Ubuntu DSVMs. This two-GPU cluster will be used to train our model and then apply it to previously-unseen data. Before executing the command below, ensure that the `cluster.json` file provided in this repository (which specifies the Python packages that should be installed during setup) has been downloaded to your computer and is available on the path (you may need to change directories to the `batchai` folder of your cloned copy of this repository). We also recommend that you change the username and password to credentials of your choice.
 ```
 az batchai cluster create -n batchaidemo --user-name lcuser --password lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json --resource-group %AZURE_RESOURCE_GROUP% --location eastus
 ```
