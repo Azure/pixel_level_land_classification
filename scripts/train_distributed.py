@@ -138,7 +138,7 @@ class MyDataSource(cntk.io.UserMinibatchSource):
 						   self.block_size), dtype=np.float32)
 
 		# Randomly select subsets of the image for training
-		h, w = self.naip_images[worker_rank][idx].shape[1:]
+		w, h = self.naip_images[worker_rank][idx].shape[1:]
 		samples_retained = 0
 		while samples_retained < mb_size_in_samples:
 			i = np.random.randint(0, w - self.block_size)
