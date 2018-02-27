@@ -1,7 +1,5 @@
 # Provision and access a Geo AI Data Science VM
 
-Note: These instructions may change as the Geo AI DSVM becomes publicly available. You may need to contact Gopi Kumar to have your subscription whitelisted in order to provision this resource.
-
 ## Provision the Geo AI Data Science VM
 
 1. Log into the [Azure Portal](https://portal.azure.com) with your preferred Azure account.
@@ -26,10 +24,9 @@ Deployment will likely take 10-20 minutes to complete. When it has finished, a l
 1. Your connection instructions will vary depending on your local machine's operating system:
     - On Windows, double-click on the RDP file and supply the credentials you chose during provisioning to connect. (You may need to choose "Use a different account" and place a backslash in front of your username to override your default domain settings.)
     - On Mac, you will need to install an application to connect using the RDP file. Further instructions are available [here](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-mac).
-1. Once you have connected to your VM, click on the "Jupyter Notebook (py35)" icon on the desktop to launch a Jupyter Notebook server. 
-    - Note: At the time of this writing, the notebooks are not yet included in the DSVM image; clone the repo and copy them to this location by hand.
+1. Once you have connected to your VM, click on the "Jupyter" icon on the desktop to launch a Jupyter Notebook server. 
     - This will launch a new browser window or tab showing the Notebook Dashboard, a control panel that allows you to select which notebook to open.
     - You may need to copy a URL from the auto-launched window into your preferred web browser in order to view the provided sample notebooks.
-1. Navigate to the "notebooks/GeoAIDSVM" subfolder and click on the `01_Intro_to_pixel-level_land_classification.ipynb` file to launch it.
+1. Navigate to the "GeoBooks\geoaidsvm_new" subfolder and click on the `01_Intro_to_pixel-level_land_classification.ipynb` file to launch it.
 
 This notebook will contain an explanation of the other notebooks in the subfolder, including a recommended order for reading and executing them. Note that code cells within the notebook can be executed by selecting the cell and pressing Ctrl+Enter.
