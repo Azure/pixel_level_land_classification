@@ -4,7 +4,7 @@
 
 1. Log into the [Azure Portal](https://portal.azure.com) with your preferred Azure account.
 1. Click the "Create a resource" button at top left.
-1. In the marketplace search bar, type "Geo AI Data Science VM" and press Enter. (Auto-completion will not work until the VM is publicly available.)
+1. In the marketplace search bar, type "Geo AI Data Science VM with ArcGIS" and press Enter. (Auto-completion will not work until the VM is publicly available.)
 1. Click on the corresponding result, then click "Create" to begin customizing your VM.
 1. In the Basics pane, provide your desired credentials, subscription, resource group, and deployment region, then click "OK."
     - We recommend creating a new resource group, so that all associated resources can be easily deleted when you are done with the tutorial.
@@ -15,7 +15,7 @@
     - If you do not choose an "NC" VM size, you will likely encounter failures during model training later in this tutorial.
 1. Confirm your choices and buy the VM to begin deployment.
 
-Deployment will likely take 10-20 minutes to complete. When it has finished, a link to your VM should be added to your dashboard in Azure Portal. (You can also find your VM by name using the search utility.)
+Deployment will likely take 10-20 minutes to complete. When it has finished, a link to your VM should be added to your dashboard in Azure Portal. (You can also find your VM by name using the search utility in Azure Portal.)
 
 ## Access the Geo AI Data Science VM
 
@@ -27,6 +27,6 @@ Deployment will likely take 10-20 minutes to complete. When it has finished, a l
 1. Once you have connected to your VM, click on the "Jupyter" icon on the desktop to launch a Jupyter Notebook server. 
     - This will launch a new browser window or tab showing the Notebook Dashboard, a control panel that allows you to select which notebook to open.
     - You may need to copy a URL from the auto-launched window into your preferred web browser in order to view the provided sample notebooks.
-1. Navigate to the "GeoBooks\geoaidsvm_new" subfolder and click on the `01_Intro_to_pixel-level_land_classification.ipynb` file to launch it.
+1. Navigate to the "GeoBooks\geoaidsvm" subfolder and click on the `01_Intro_to_pixel-level_land_classification.ipynb` file to launch it.
 
 This notebook will contain an explanation of the other notebooks in the subfolder, including a recommended order for reading and executing them. Note that code cells within the notebook can be executed by selecting the cell and pressing Ctrl+Enter.
