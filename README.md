@@ -31,7 +31,7 @@ This tutorial will train a pixel-level land cover classifier for a single epoch:
 ## Related materials
 
 - [Keynote demo from Microsoft Ignite](https://www.youtube.com/watch?time_continue=1&v=MUqo-lsAKgQ#t=23m46s)
-- Blog post (forthcoming)
+- [Blog post](https://blogs.technet.microsoft.com/machinelearning/2018/03/12/pixel-level-land-cover-classification-using-the-geo-ai-data-science-virtual-machine-and-batch-ai/)
 - Main [AI for Earth](https://www.microsoft.com/en-us/aiforearth) website
 - [Publicity video on the Chesapeake Conservancy collaboration with Microsoft](http://chesapeakeconservancy.org/2017/07/10/microsoft-video-features-chesapeake-conservancy/)
 - [Video clip showing real-time local application of the trained CNTK model through ESRI's ArcGIS software](https://www.youtube.com/watch?v=_iq-_K1OsMA)
