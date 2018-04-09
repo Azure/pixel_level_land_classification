@@ -18,7 +18,7 @@ This tutorial requires the following programs:
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - [AzCopy](https://docs.microsoft.com/azure/storage/common/storage-use-azcopy)
 
-These programs are available for Windows and Linux. If you prefer not to install these programs locally, you may instead provision an [Azure Data Science Virtual Machine](https://docs.microsoft.com/azure/machine-learning/data-science-virtual-machine/provision-vm). (Both programs are pre-installed on these VMs and available on the system path.) The commands included in this tutorial were written and tested in Windows, but readers will likely find it straightforward to adapt for Linux.
+These programs are available for Windows and Linux. If you prefer not to install these programs locally, you may instead provision an [Azure Windows Data Science Virtual Machine](https://docs.microsoft.com/azure/machine-learning/data-science-virtual-machine/provision-vm). (Both programs are pre-installed on this VM type and are available on the system path.) The commands included in this tutorial were written and tested in Windows, but readers will likely find it straightforward to adapt for Linux.
 
 Once these programs are installed, open a command line interface and check that the binaries are available on the system path by issuing the commands below:
 ```
