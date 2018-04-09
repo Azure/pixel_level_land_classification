@@ -69,7 +69,7 @@ You may use other locations, but we recommend `eastus` for proximity to the data
 We will create an Azure storage account to hold training and evaluation data, scripts, and output files. Choose a unique name for this storage account and insert it in place of the bracketed expression below. Then, issue the following commands to create your storage account and store its randomly-assigned access key:
 ```
 set STORAGE_ACCOUNT_NAME=[storage account name]
-az storage account create --name %STORAGE_ACCOUNT_NAME% --sku Standard_LRS --sku Standard_LRS --resource-group %AZURE_RESOURCE_GROUP% --location eastus
+az storage account create --name %STORAGE_ACCOUNT_NAME% --sku Standard_LRS --resource-group %AZURE_RESOURCE_GROUP% --location eastus
 for /f "delims=" %a in ('az storage account keys list --account-name %STORAGE_ACCOUNT_NAME% --resource-group %AZURE_RESOURCE_GROUP% --query "[0].value"') do @set STORAGE_ACCOUNT_KEY=%a
 ```
 
