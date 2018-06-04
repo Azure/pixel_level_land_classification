@@ -2,6 +2,8 @@
 
 ## Provision the Geo AI Data Science VM
 
+We recommend that you provision a Geo AI Data Science VM using the [one-click provisioning solution template](https://gallery.azure.ai/Solution/Geo-AI-Data-Science-Virtual-Machine-2). However, if you prefer, you can create the VM from the Azure Portal using the instructions below:
+
 1. Log into the [Azure Portal](https://portal.azure.com) with your preferred Azure account.
 1. Click the "Create a resource" button at top left.
 1. In the marketplace search bar, type "Geo AI Data Science VM with ArcGIS" and press Enter. (Auto-completion will not work until the VM is publicly available.)
