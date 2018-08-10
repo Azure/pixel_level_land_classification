@@ -6,17 +6,17 @@ We will apply the trained model to an approximately 1 km x 1 km region centered 
 
 We will launch an evaluation job to apply our trained model to a specified region in our evaluation data. Before executing the command below, ensure that the `evaluation_job.json` file contained in this git repository has been downloaded to your computer and is available on the path, and that the training job has finished running.
 ```
-az batchai job create -n evaluationjob -c evaluation_job.json -r batchaidemo --resource-group %AZURE_RESOURCE_GROUP% --location eastus
+az batchai job create -n evaluationjob -f evaluation_job.json -c batchaidemo --resource-group %AZURE_RESOURCE_GROUP% --location eastus -w %WORKSPACE_NAME% -e %EXPERIMENT_NAME%
 ```
 This job will take ~5 minutes to run; while waiting, you can read the section below for more information on what the job is doing. You can check on the job's progress using the following command:
 ```
-az batchai job show -n evaluationjob --resource-group %AZURE_RESOURCE_GROUP%
+az batchai job show -n evaluationjob --resource-group %AZURE_RESOURCE_GROUP% -w %WORKSPACE_NAME% -e %EXPERIMENT_NAME%
 ```
 
 When the job status indicated by the "executionState" changes to "succeeded", the evaluation job is complete. You can also monitor the standard output and error messages as they're produced using the following commands:
 ```
-az batchai job stream-file -d stdouterr -j evaluationjob -n stdout.txt -g %AZURE_RESOURCE_GROUP%
-az batchai job stream-file -d stdouterr -j evaluationjob -n stderr.txt -g %AZURE_RESOURCE_GROUP%
+az batchai job file stream -d stdouterr -j evaluationjob -n stdout.txt -g %AZURE_RESOURCE_GROUP% -w %WORKSPACE_NAME% -e %EXPERIMENT_NAME%
+az batchai job file stream -d stdouterr -j evaluationjob -n stderr.txt -g %AZURE_RESOURCE_GROUP% -w %WORKSPACE_NAME% -e %EXPERIMENT_NAME%
 ```
 
 To exit the streaming view, press Ctrl+C. You will be asked whether to terminate the job if it is still running: press "N" to indicate that you want the job to continue running.
@@ -41,7 +41,7 @@ For this job, we made use of Batch AI's "output directory" feature. This option 
 
 After your job has finished running, you can get the download URLs for the output files in this randomly-named directory using the following command:
 ```
-az batchai job list-files -n evaluationjob -g %AZURE_RESOURCE_GROUP% -d IMAGES
+az batchai job file list -j evaluationjob -g %AZURE_RESOURCE_GROUP% -d IMAGES -w %WORKSPACE_NAME% -e %EXPERIMENT_NAME%
 ```
 
 Simply visit the URLs to download the three output files locally.
