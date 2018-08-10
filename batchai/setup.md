@@ -44,15 +44,6 @@ Identify the subscription of interest in the JSON-formatted output. Use its "id"
 az account set -s [subscription id]
 ```
 
-Register the Batch/BatchAI providers and grant Batch AI "Network Contributor" access on your subscription using the following commands. Note that you will need to copy your subscription's id in place of the bracketed expression before executing the command.
-```
-az provider register -n Microsoft.Batch
-az provider register -n Microsoft.BatchAI
-az role assignment create --scope /subscriptions/[subscription id] --role "Network Contributor" --assignee 9fcb3732-5f52-4135-8c08-9d4bbaf203ea
-```
-
-It may take ~10 minutes for the provider registration process to complete. You may proceed with the tutorial in the meantime.
-
 ## Create the necessary Azure resources
 
 ### Create an Azure resource group
@@ -82,17 +73,29 @@ AzCopy /Source:https://aiforearthcollateral.blob.core.windows.net/imagesegmentat
 
 Expect the copy step to take 5-10 minutes.
 
+### Create an Azure Batch AI workspace and experiment
+
+Batch AI workspaces can contain clusters as well as experiments, which in turn organize jobs. Choose a unique name for your workspace and experiment and insert them in place of the bracketed expressions below, then run the commands to create a workspace and experiment:
+
+```
+set WORKSPACE_NAME=[your selected workspace name]
+az batchai workspace create -n %WORKSPACE_NAME% --resource-group %AZURE_RESOURCE_GROUP%
+
+set EXPERIMENT_NAME=[your selected experiment name]
+az batchai experiment create -n %EXPERIMENT_NAME% -w %WORKSPACE_NAME% --resource-group %AZURE_RESOURCE_GROUP% 
+```
+
 ### Create an Azure Batch AI cluster
 
 We will create an Azure Batch AI cluster containing two NC6 Ubuntu DSVMs. This two-GPU cluster will be used to train our model and then apply it to previously-unseen data. Before executing the command below, ensure that the `cluster.json` file provided in this repository (which specifies the Python packages that should be installed during setup) has been downloaded to your computer and is available on the path (you may need to change directories to the `batchai` folder of your cloned copy of this repository). We also recommend that you change the username and password to credentials of your choice.
 ```
-az batchai cluster create -n batchaidemo --user-name lcuser --password lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json --resource-group %AZURE_RESOURCE_GROUP% --location eastus
+az batchai cluster create -n batchaidemo --user-name lcuser --password lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json --resource-group %AZURE_RESOURCE_GROUP% --location eastus -w %WORKSPACE_NAME% 
 ```
 This command will create a cluster whose credentials are a username-password pair. For increased security, we highly encourage the use of an SSH key as credential: for more information, see the [Batch AI documentation](https://github.com/Azure/BatchAI/blob/master/documentation/using-azure-cli-20.md#Admin-User-Account) and the output of the `az batchai cluster create -h` command.
 
 It will take approximately ten minutes for cluster creation to complete. You can check on progress of the provisioning process using the command below: when provisioning is complete, you should see that the "errors" field is null and that your cluster has two "idle" nodes.
 ```
-az batchai cluster show -n batchaidemo --resource-group %AZURE_RESOURCE_GROUP%
+az batchai cluster show -n batchaidemo --resource-group %AZURE_RESOURCE_GROUP% -w %WORKSPACE_NAME%
 ```
 
 ## Next steps
