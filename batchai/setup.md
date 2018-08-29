@@ -27,6 +27,8 @@ azcopy
 ```
 If not, you may need to [edit the system path](http://www.zdnet.com/article/windows-10-tip-point-and-click-to-edit-the-system-path-variable/) to point to the folders containing these binaries (e.g., `C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy`) and load a fresh command prompt.
 
+This tutorial was tested using Azure CLI version 2.0.42. If you installed the Azure CLI previously, check your version number using `az --version` and upgrade if necessary.
+
 ### Prepare to use the Azure CLI
 
 In your command line interface, execute the following command. The output will contain a URL and token that you must visit to authenticate your login.
@@ -89,7 +91,7 @@ az batchai experiment create -n %EXPERIMENT_NAME% -w %WORKSPACE_NAME% --resource
 
 We will create an Azure Batch AI cluster containing two NC6 Ubuntu DSVMs. This two-GPU cluster will be used to train our model and then apply it to previously-unseen data. Before executing the command below, ensure that the `cluster.json` file provided in this repository (which specifies the Python packages that should be installed during setup) has been downloaded to your computer and is available on the path (you may need to change directories to the `batchai` folder of your cloned copy of this repository). We also recommend that you change the username and password to credentials of your choice.
 ```
-az batchai cluster create -n batchaidemo --user-name lcuser --password lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --container-name blobfuse --container-mount-path blobfuse -c cluster.json --resource-group %AZURE_RESOURCE_GROUP% --location eastus -w %WORKSPACE_NAME% 
+az batchai cluster create -n batchaidemo --user-name lcuser --password lcpassword --afs-name batchai --image UbuntuDSVM --vm-size STANDARD_NC6 --max 2 --min 2 --storage-account-name %STORAGE_ACCOUNT_NAME% --bfs-name blobfuse --bfs-mount-path blobfuse -f cluster.json --resource-group %AZURE_RESOURCE_GROUP% -w %WORKSPACE_NAME% 
 ```
 This command will create a cluster whose credentials are a username-password pair. For increased security, we highly encourage the use of an SSH key as credential: for more information, see the [Batch AI documentation](https://github.com/Azure/BatchAI/blob/master/documentation/using-azure-cli-20.md#Admin-User-Account) and the output of the `az batchai cluster create -h` command.
 
