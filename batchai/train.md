@@ -33,7 +33,7 @@ By default, the model will be trained for just one epoch (see the `num_epochs` p
 
 ### Training data access
 
-Near the beginning of the [training script](https://aiforearthcollateral.blob.core.windows.net/imagesegmentationtutorial/scripts/train_distributed.py) is a custom minibatch source specifying how the training data should be read and used. Our training data comprise pairs of TIF images. The first image in each pair is a four-channel (red, green, blue, near-infrared) aerial image of a region of the Chesapeake Bay watershed. The second image is a single-channel "image" corresponding to the same region, in which each pixel's value corresponds to a land cover label:
+Near the beginning of the [training script](https://ai4ehackathons.blob.core.windows.net/landcovertutorial/scripts/train_distributed.py) is a custom minibatch source specifying how the training data should be read and used. Our training data comprise pairs of TIF images. The first image in each pair is a four-channel (red, green, blue, near-infrared) aerial image of a region of the Chesapeake Bay watershed. The second image is a single-channel "image" corresponding to the same region, in which each pixel's value corresponds to a land cover label:
 - 0: Unknown land type
 - 1: Water
 - 2: Trees and shrubs
@@ -43,7 +43,7 @@ Near the beginning of the [training script](https://aiforearthcollateral.blob.co
 These two images in each pair correspond to the features and labels of the data, respectively. The minibatch source specifies that the available image pairs should be partitioned evenly between the workers, and each worker should load its set of image pairs into memory at the beginning of training. This ensures that the slow process of reading the input images is performed only once per training job. To produce each minibatch, subregions of a given image pair are sampled randomly. Training proceeds by cycling through the image pairs.
 
 ### The model architecture
-The [model definition script](https://aiforearthcollateral.blob.core.windows.net/imagesegmentationtutorial/scripts/model_mini_pub.py) specifies the model architecture: a form of [U-Net](https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/). The input for this model will be a 256 pixel x 256 pixel four-channel aerial image (corresponding to a 256 meter x 256 meter region), and the output will be predicted land cover labels for the 128 m x 128 m region at the center of the input region. (Predictions are not provided at the boundaries due to edge effects.)
+The [model definition script](https://ai4ehackathons.blob.core.windows.net/landcovertutorial/scripts/model_mini_pub.py) specifies the model architecture: a form of [U-Net](https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/). The input for this model will be a 256 pixel x 256 pixel four-channel aerial image (corresponding to a 256 meter x 256 meter region), and the output will be predicted land cover labels for the 128 m x 128 m region at the center of the input region. (Predictions are not provided at the boundaries due to edge effects.)
 
 ### Training script outputs
 
