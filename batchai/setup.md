@@ -70,7 +70,7 @@ With the commands below, we will create an Azure File Share to hold setup and jo
 ```
 az storage share create --account-name %STORAGE_ACCOUNT_NAME% --name batchai
 az storage container create --account-name %STORAGE_ACCOUNT_NAME% --name blobfuse
-AzCopy /Source:https://aiforearthcollateral.blob.core.windows.net/imagesegmentationtutorial /SourceSAS:"https://aiforearthcollateral.blob.core.windows.net/imagesegmentationtutorial?st=2018-11-27T08%3A06%3A25Z&se=2019-11-28T08%3A06%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=Y8z35PmqGtCWNJzXvbod%2FJPeqtvnEmhIF8EQn4uuO44%3D" /Dest:https://%STORAGE_ACCOUNT_NAME%.blob.core.windows.net/blobfuse /DestKey:%STORAGE_ACCOUNT_KEY% /S
+AzCopy /Source:https://ai4ehackathons.blob.core.windows.net/landcovertutorial /SourceSAS:"https://ai4ehackathons.blob.core.windows.net/landcovertutorial?se=2020-04-06T06%3A59%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=YD6mbqnmYTW%2Bs6guVndjQSQ8NUcV8F9HY%2BhPNWiulIo%3D" /Dest:https://%STORAGE_ACCOUNT_NAME%.blob.core.windows.net/blobfuse /DestKey:%STORAGE_ACCOUNT_KEY% /S
 ```
 
 Expect the copy step to take 5-10 minutes.
